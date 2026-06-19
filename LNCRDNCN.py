@@ -6,7 +6,10 @@ from collections import defaultdict, Counter
 
 from data_classes.sample_decision import SampleDecision
 from data_classes.iteration_record import IterationRecord
-from NCN import NearestCentroidNeighbor
+import NCN
+import importlib
+importlib.reload(NCN)
+NearestCentroidNeighbor = NCN.NearestCentroidNeighbor
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
@@ -85,7 +88,8 @@ class NoiseClassifier:
         for i in range(n):
             if y_pred[i] != y[i]:
                 noise_set.add(i)
-                recommended_labels[i] = int(y_pred[i])
+                # recommended_labels[i] = int(y_pred[i])
+                recommended_labels[i] = y_pred[i]
 
         return noise_set, recommended_labels
 
@@ -246,7 +250,7 @@ class NoiseClassifier:
             rns_score=rns_score,
             rns_mean=rns_mean,
             confidence=confidence_ei,
-            current_label=int(y_current[ei_idx]),
+            current_label=y_current[ei_idx],
             recommended_labels=recommended_labels
         )
 

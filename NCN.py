@@ -37,16 +37,15 @@ class NearestCentroidNeighbor:
         remaining = list(candidates)   # Candidates not yet selected
 
         for step in range(k_actual):
+            remaining_array = np.array(remaining)
             if step == 0:
                 # Step 1: First neighbour = simple nearest neighbour
-                remaining_array = np.array(remaining)
                 dists = self.compute_euclidean_distances(query_point, X[remaining_array])
                 best_local_idx = np.argmin(dists)           # index into remaining_array
                 best_global_idx = remaining_array[best_local_idx]
             else:
                 # Step 2+: Find candidate that minimises centroid distance to query
                 # current_centroid = np.mean(selected_points, axis=0)  # shape (n_features,)
-                remaining_array = np.array(remaining)
 
                 best_centroid_dist = np.inf
                 best_global_idx = None

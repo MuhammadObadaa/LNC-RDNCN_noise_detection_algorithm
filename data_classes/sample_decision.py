@@ -7,9 +7,9 @@ class SampleDecision:
     rns_score: float
     rns_mean: float
     confidence: float
-    current_label: int
-    clean_ground_truth_label: int = None
-    recommended_labels: List[int] = field(default_factory=list)
+    current_label: any
+    clean_ground_truth_label: any = None
+    recommended_labels: List[any] = field(default_factory=list)
     decision: str = "UNKNOWN"
-    corrected_label: None | Optional[int] = None
+    corrected_label: None | Optional[any] = None
     rule_applied: int = 0

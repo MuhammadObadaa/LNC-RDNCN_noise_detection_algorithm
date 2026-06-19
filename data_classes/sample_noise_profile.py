@@ -10,6 +10,7 @@ class SampleNoiseProfile:
     confidence: float
     was_ever_in_NF: bool
     final_decision: str
-    working_label: int
-    true_label: int = None
+    source_label:any
+    working_label: any
+    true_label: any = None
     is_truly_noisy: bool = None
